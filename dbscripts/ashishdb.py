@@ -2,13 +2,13 @@
 import MySQLdb
 
 # Open database connection
-db = MySQLdb.connect("zekeserver.cra1n4auudcc.ap-southeast-1.rds.amazonaws.com","user","zeketraining","zekedb")
+db = MySQLdb.connect("zekeinstance.cra1n4auudcc.ap-southeast-1.rds.amazonaws.com","test","epsilon123","zekelabs")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
 
 # Create table as per requirement
-#sql = """CREATE TABLE EMPLOYEE1 (
+#sql = """CREATE TABLE EMPLOYEE_SURAJ (
 #         FIRST_NAME  CHAR(20) NOT NULL,
 #         LAST_NAME  CHAR(20),
 #         AGE INT,  
@@ -17,43 +17,46 @@ cursor = db.cursor()
 #cursor.execute(sql)
 #
 # execute SQL query using execute() method.
-sql = """INSERT INTO EMPLOYEE1(FIRST_NAME,
-         LAST_NAME, AGE, SEX, INCOME)
-         VALUES ('Prithvi', 'M', 25, 'M', 6000)"""
+#sql = """INSERT INTO EMPLOYEE_SURAJ(FIRST_NAME,
+#         LAST_NAME, AGE, SEX, INCOME)
+#         VALUES ('Prithvi', 'M', 25, 'M', 6000)"""
 
-#sql = """ DELETE FROM EMPLOYEE1 WHERE FIRST_NAME = "Prithvi" """
-cursor.execute(sql)
-db.commit()
+#sql = """ DELETE FROM EMPLOYEE_SURAJ WHERE FIRST_NAME = "Prithvi" """
+#cursor.execute(sql)
+#db.commit()
 
-
-sql = "SELECT * FROM EMPLOYEE1"
-#sql = "SELECT * FROM EMPLOYEE \
+sql = "SELECT * FROM EMPLOYEE_SURAJ"
+#sql = "SELECT * FROM EMPLOYEE_SURAJ \
 #       WHERE INCOME > '%d'" % (1000)
 #sql = getquery()
 
-try:
-	cursor.execute(sql)
-	results = cursor.fetchall()
+#try:
+#	cursor.execute(sql)
+#	results = cursor.fetchall()
 #	print(results)	
-	outputfile = open("outfile.txt",'a')
-	for i in results:
+#	outputfile = open("outfile.txt",'a')
+#	for i in results:
 #		print (i)
-		print("firstname = ", i[0], "lastname = ", i[1])
-		outputfile.write(str(i)+"\n") 
-	outputfile.close()
+#		print("firstname = ", i[0], "lastname = ", i[1])
+#		outputfile.write(str(i)+"\n") 
+#	outputfile.close()
 #	db.commit()
-except:
-	db.rollback()
-	print "Error: unable to fecth data"
+#except:
+#	db.rollback()
+#	print "Error: unable to fecth data"
 
-db.close()
-#sql = """INSERT INTO EMPLOYEE(FIRST_NAME,
+#db.close()
+#sql = """INSERT INTO EMPLOYEE_SURAJ(FIRST_NAME,
 #         LAST_NAME, AGE, SEX, INCOME)
 #         VALUES ('Mac', 'Mohan', 20, 'M', 2000)"""
+cursor.execute(sql)
+#db.commit()
 # Fetch a single row using fetchone() method.
 #data = cursor.fetchone()
-#data = cursor.()
-#print "Database version : %s " % data
+#data = cursor.fetchall()
+#print(data)
+data = cursor()
+print "Database version : %s " % data
 
 # disconnect from server
-#db.close()
+db.close()
